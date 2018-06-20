@@ -1,54 +1,87 @@
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+<!DOCTYPE html>
+<html>
 
-    body {
-        font: 13px Helvetica, Arial;
-    }
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-    form {
-        background: grey;
-        padding: 10px;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-    }
+<body>
 
-    form input {
-        border: 0;
-        padding: 10px;
-        width: 90%;
-        margin-right: .5%;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    form button {
-        width: 9%;
-        background: rgb(130, 224, 255);
-        border: none;
-        padding: 10px;
-    }
+        body {
+            font: 13px Helvetica, Arial;
+        }
 
-    #messages {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
+        form {
+            background: grey;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
 
-    #messages li {
-        padding: 5px 10px;
-    }
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
 
-    #messages li:nth-child(odd) {
-        background: #eee;
-    }
-</style>
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
 
-<ul id="messages"></ul>
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
 
-<form action="">
-    <input id="m" autocomplete="off" />
-    <button>Send</button>
-</form>
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+
+    <ul id="messages"></ul>
+
+    <form action="">
+        <input id="m" autocomplete="off" />
+        <button>Send</button>
+    </form>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <script>
+        $(() => {
+            var socket = io()
+
+            $('form').submit(() => {
+                socket.emit('chat message', $('#m').val())
+                $('#m').val('')
+
+                return false
+            })
+        })
+    </script>
+
+</body>
+
+</html>
