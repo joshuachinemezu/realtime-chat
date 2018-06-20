@@ -13,5 +13,8 @@
     "nodejs"
   ],
   "author": "Joshua Chinemezu",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
